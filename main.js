@@ -46,3 +46,29 @@ function togglePricePerUnit(executionContext) {
     pricePerUnitControl.setVisible(false);
   }
 }
+
+async function calculateChildsQuantity(executionContext) {
+  const form = executionContext.getFormContext();
+  const recordId = form.data.entity.getId().replace(/[{}]/g, "");
+  const fetchXML = `
+  <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+    <entity name="cr8c9_inventory_product">
+      <attribute name="cr8c9_inventory_productid" />
+      <attribute name="cr8c9_int_quantity" />
+      <attribute name="cr8c9_fk_product_" />
+      <attribute name="cr8c9_fk_inventory" />
+      <attribute name="cr8c9_name" />
+      <order attribute="cr8c9_int_quantity" descending="false" />
+      <filter type="and">
+        <condition attribute="cr8c9_fk_inventory" operator="eq" value="${recordId}" />
+      </filter>
+    </entity>
+  </fetch>
+  `;
+  const result = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_inventory_product",
+    "?fetchXml=" + encodeURIComponent(fetchXML)
+  );
+  const itemsQuantity = result.entities.length;
+  form.getAttribute("cr8c9_int_items_quantity").setValue(itemsQuantity);
+}
