@@ -74,68 +74,46 @@ async function calculateChildsQuantity(executionContext) {
 
 async function inventoryTotalPrice(executionContext) {
   const form = executionContext.getFormContext();
-  const subgrid = form.getControl("inventory_products");
   const priceListField = form.getAttribute("cr8c9_fk_price_list").getValue();
   const priceListId = priceListField
     ? priceListField[0].id.replace(/[{}]/g, "")
     : null;
-
-  if (!priceListId) {
-    alert("Price List is not selected.");
-    return;
-  }
-
-  const fetchPrice = async (productId) => {
-    const fetchXml = `
-      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
-        <entity name="cr8c9_price_list_item">
-          <attribute name="cr8c9_price_list_itemid"/>
+  const fetchXml = `
+  <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+    <entity name="cr8c9_inventory_product">
+      <attribute name="cr8c9_name"/>
+      <attribute name="cr8c9_int_quantity"/>
+      <attribute name="cr8c9_fk_product_"/>
+      <order attribute="cr8c9_name" descending="false"/>
+      <filter type="and">
+        <condition attribute="cr8c9_fk_inventory" operator="eq" value="{${form.data.entity
+          .getId()
+          .replace(/[{}]/g, "")}}"/>
+      </filter>
+      <link-entity name="cr8c9_product" from="cr8c9_productid" to="cr8c9_fk_product_" link-type="inner" alias="product">
+        <link-entity name="cr8c9_price_list_item" from="cr8c9_fk_product" to="cr8c9_productid" link-type="inner" alias="price">
           <attribute name="cr8c9_mon_price"/>
-          <order attribute="cr8c9_mon_price" descending="false"/>
+          <attribute name="cr8c9_fk_price_list"/>
           <filter type="and">
-            <condition attribute="cr8c9_fk_product" operator="eq" value="{${productId}}"/>
             <condition attribute="cr8c9_fk_price_list" operator="eq" value="${priceListId}"/>
           </filter>
-        </entity>
-      </fetch>`;
-
-    const result = await Xrm.WebApi.retrieveMultipleRecords(
-      "cr8c9_price_list_item",
-      `?fetchXml=${encodeURIComponent(fetchXml)}`
-    );
-
-    if (result.entities.length > 0) {
-      return result.entities[0].cr8c9_mon_price || 0;
-    }
-    return 0;
-  };
-
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>`;
+  const result = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_inventory_product",
+    `?fetchXml=${encodeURIComponent(fetchXml)}`
+  );
   let totalAmount = 0;
-
-  const rows = subgrid.getGrid().getRows();
-  for (let i = 0; i < rows.getLength(); i++) {
-    const row = rows.get(i);
-    const quantity =
-      row
-        .getData()
-        .getEntity()
-        .attributes.get("cr8c9_int_quantity")
-        .getValue() || 0;
-    const product = row
-      .getData()
-      .getEntity()
-      .attributes.get("cr8c9_fk_product_")
-      .getValue();
-    const productId = product ? product[0].id.replace(/[{}]/g, "") : null;
-
-    if (productId) {
-      const price = await fetchPrice(productId);
-      let lineTotalPrice = price * quantity;
-      if (quantity === 0) {
-        lineTotalPrice = price;
-      }
-      totalAmount += lineTotalPrice;
+  result.entities.forEach((item) => {
+    const quantity = item.cr8c9_int_quantity || 0;
+    const price = item["price.cr8c9_mon_price"] || 0;
+    let lineTotalPrice = price * quantity;
+    if (quantity === 0) {
+      lineTotalPrice = price;
     }
-  }
+    totalAmount += lineTotalPrice;
+  });
   form.getAttribute("cr8c9_mon_total_amount").setValue(totalAmount);
 }
