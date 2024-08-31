@@ -1,5 +1,4 @@
-async function calculateTotalPrice(executionContext) {
-  const form = executionContext.getFormContext();
+async function calculateTotalPrice(form) {
   const priceListField = form.getAttribute("cr8c9_fk_price_list").getValue();
   const priceListId = priceListField
     ? priceListField[0].id.replace(/[{}]/g, "")
