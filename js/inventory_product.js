@@ -41,20 +41,32 @@ async function autofillPricePerUnit(executionContext) {
   }
   const inventoryId = inventory[0].id.replace("{", "").replace("}", "");
   const productId = product[0].id.replace("{", "").replace("}", "");
-  const inventoryRecord = await Xrm.WebApi.retrieveRecord(
+
+  const fetchXML = `
+  <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+    <entity name="cr8c9_inventory">
+      <attribute name="cr8c9_inventoryid" />
+      <attribute name="cr8c9_fk_price_list" />
+      <filter type="and">
+        <condition attribute="cr8c9_inventoryid" operator="eq" value="${inventoryId}" />
+      </filter>
+      <link-entity name="cr8c9_price_list_item" from="cr8c9_fk_price_list" to="cr8c9_fk_price_list" link-type="inner" alias="pli">
+        <attribute name="cr8c9_mon_price" />
+        <filter type="and">
+          <condition attribute="cr8c9_fk_product" operator="eq" value="${productId}" />
+        </filter>
+      </link-entity>
+    </entity>
+  </fetch>`;
+
+  const result = await Xrm.WebApi.retrieveMultipleRecords(
     "cr8c9_inventory",
-    inventoryId,
-    "?$select=_cr8c9_fk_price_list_value"
+    `?fetchXml=${encodeURIComponent(fetchXML)}`
   );
-  const priceListId = inventoryRecord._cr8c9_fk_price_list_value;
-  const priceListItemQuery = `?$filter=_cr8c9_fk_price_list_value eq ${priceListId} and _cr8c9_fk_product_value eq ${productId}&$select=cr8c9_mon_price`;
-  const priceListItems = await Xrm.WebApi.retrieveMultipleRecords(
-    "cr8c9_price_list_item",
-    priceListItemQuery
-  );
+
   let pricePerUnit;
-  if (priceListItems.entities.length) {
-    pricePerUnit = priceListItems.entities[0].cr8c9_mon_price;
+  if (result.entities.length) {
+    pricePerUnit = result.entities[0]["pli.cr8c9_mon_price"];
   } else {
     const productRecord = await Xrm.WebApi.retrieveRecord(
       "cr8c9_product",
