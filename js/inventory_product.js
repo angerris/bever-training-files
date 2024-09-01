@@ -119,3 +119,39 @@ async function autofillCurrency(executionContext) {
     }
   }
 }
+
+async function checkIfProductExists(executionContext) {
+  const formContext = executionContext.getFormContext();
+  const product = formContext.getAttribute("cr8c9_fk_product_").getValue();
+  const inventory = formContext.getAttribute("cr8c9_fk_inventory").getValue();
+  if (!product || !inventory) {
+    return;
+  }
+  const productId = product[0].id.replace("{", "").replace("}", "");
+  const inventoryId = inventory[0].id.replace("{", "").replace("}", "");
+  const fetchXML = `
+      <fetch top="1">
+          <entity name="cr8c9_inventory_product">
+              <attribute name="cr8c9_inventory_productid" />
+              <filter>
+                  <condition attribute="cr8c9_fk_product_" operator="eq" value="${productId}" />
+                  <condition attribute="cr8c9_fk_inventory" operator="eq" value="${inventoryId}" />
+              </filter>
+          </entity>
+      </fetch>`;
+
+  const result = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_inventory_product",
+    `?fetchXml=${encodeURIComponent(fetchXML)}`
+  );
+  if (result.entities.length) {
+    formContext
+      .getControl("cr8c9_fk_product_")
+      .setNotification(
+        "This product already exists in the selected inventory.",
+        123
+      );
+  } else {
+    formContext.getControl("cr8c9_fk_product_").clearNotification(123);
+  }
+}
