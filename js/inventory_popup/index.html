@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Popup</title>
+    <script src="../WebResources/cr8c9_popup_scripts_js"></script>
+    <meta />
+  </head>
+  <body style="overflow-wrap: break-word" onfocusout="parent.setEmailRange();">
+    <label for="productSelect">Choose a product:</label>
+    <select name="product" id="productSelect"></select>
+
+    <label for="inOutSelect">Choose an option:</label>
+    <select name="inOut" id="inOutSelect">
+      <option value="in">In</option>
+      <option value="out">Out</option>
+    </select>
+
+    <label for="quantity">Enter quantity:</label>
+    <input name="quantity" id="quantity" type="number" />
+    <br />
+    <br />
+    <br />
+
+    <button id="okButton">OK</button>
+    <button id="cancelButton">Cancel</button>
+  </body>
+</html>
