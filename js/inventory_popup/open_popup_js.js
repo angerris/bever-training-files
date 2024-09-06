@@ -1,5 +1,4 @@
-function openPopup(executionContext) {
-  const formContext = executionContext.getFormContext();
+function openPopup(formContext) {
   const inventoryId = formContext.data.entity.getId();
   const data = JSON.stringify({
     inventoryId: inventoryId

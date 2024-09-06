@@ -2,6 +2,7 @@ window.onload = async () => {
   const queryParams = new URLSearchParams(window.location.search);
   const data = queryParams.get("data");
   let inventoryId = null;
+
   if (data) {
     const parsedData = JSON.parse(decodeURIComponent(data));
     inventoryId = parsedData.inventoryId;
@@ -38,17 +39,17 @@ window.onload = async () => {
     const productName = productSelect.options[productSelect.selectedIndex].text;
 
     const inventoryProductFetchXml = `
-        <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
-          <entity name="cr8c9_inventory_product">
-            <attribute name="cr8c9_inventory_productid"/>
-            <attribute name="cr8c9_fk_product_"/>
-            <attribute name="cr8c9_int_quantity"/> 
-            <filter type="and">
-              <condition attribute="cr8c9_fk_inventory" operator="eq" value="${inventoryId}"/>
-            </filter>
-          </entity>
-        </fetch>
-      `;
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="cr8c9_inventory_product">
+          <attribute name="cr8c9_inventory_productid"/>
+          <attribute name="cr8c9_fk_product_"/>
+          <attribute name="cr8c9_int_quantity"/> 
+          <filter type="and">
+            <condition attribute="cr8c9_fk_inventory" operator="eq" value="${inventoryId}"/>
+          </filter>
+        </entity>
+      </fetch>
+    `;
 
     const inventoryProducts = await parent.Xrm.WebApi.retrieveMultipleRecords(
       "cr8c9_inventory_product",
@@ -77,7 +78,9 @@ window.onload = async () => {
             ""
           )})`,
           cr8c9_int_quantity: quantity,
-          cr8c9_name: productName
+          cr8c9_name: productName,
+          cr8c9_mon_price_per_unit: 1,
+          cr8c9_mon_total_amount: quantity
         });
       }
     } else if (selectedOption === "out") {
@@ -93,6 +96,8 @@ window.onload = async () => {
               (productEntry["cr8c9_int_quantity"] || 0) - quantity
           }
         );
+      } else {
+        alert("Not enough products in the inventory.");
       }
     }
 
