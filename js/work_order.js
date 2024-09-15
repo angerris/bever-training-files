@@ -84,3 +84,52 @@ function applyEmptyFilter(formContext) {
     .getControl("cr8c9_fk_contact")
     .addCustomFilter(emptyFilterXml, "cr8c9_contact");
 }
+
+async function updateWorkOrderTotals(formContext) {
+  const workOrderId = formContext.data.entity.getId().replace(/[{}]/g, "");
+  const totalProductsAmount = await getSumOfField(
+    "cr8c9_work_order_product",
+    "cr8c9_mon_total_amount",
+    "cr8c9_fk_work_order",
+    workOrderId
+  );
+  const totalServicesAmount = await getSumOfField(
+    "cr8c9_work_order_service",
+    "cr8c9_mon_total_amount",
+    "cr8c9_fk_work_order",
+    workOrderId
+  );
+
+  formContext
+    .getAttribute("cr8c9_mon_total_products_amount")
+    .setValue(totalProductsAmount);
+  formContext
+    .getAttribute("cr8c9_mon_total_services_amount")
+    .setValue(totalServicesAmount);
+}
+
+async function getSumOfField(
+  entityLogicalName,
+  fieldName,
+  lookupFieldName,
+  lookupId
+) {
+  const fetchXml = `
+        <fetch aggregate="true" version="1.0">
+            <entity name="${entityLogicalName}">
+                <attribute name="${fieldName}" aggregate="sum" alias="totalSum" />
+                <filter type="and">
+                    <condition attribute="${lookupFieldName}" operator="eq" value="${lookupId}" />
+                </filter>
+            </entity>
+        </fetch>
+    `;
+
+  const response = await Xrm.WebApi.retrieveMultipleRecords(
+    entityLogicalName,
+    `?fetchXml=${encodeURIComponent(fetchXml)}`
+  );
+  const totalSum =
+    response.entities.length > 0 ? response.entities[0]["totalSum"] : 0;
+  return totalSum;
+}
