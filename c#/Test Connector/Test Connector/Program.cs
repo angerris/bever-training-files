@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading; 
-using Test_Connector.Utilities;
-using Test_Connector.Model;
+﻿using System.Threading;
+using System;
+using Test_Connector.ConsoleApps;
 
 namespace Test_D365_Connector
 {
@@ -10,18 +8,37 @@ namespace Test_D365_Connector
     {
         static void Main(string[] args)
         {
-            D365Connector d365connector = new D365Connector();
-            Console.WriteLine("Successfully connected to D365.");
-            Console.WriteLine("Enter Pricelist Name:");
-            string priceListName = Console.ReadLine();
-            PriceList priceList = d365connector.getPriceListByName(priceListName);
-            List<Product> products = d365connector.getAllProducts();
-            foreach (Product product in products)
+            while (true)
             {
-                d365connector.createPriceListItem(priceList, product);
+                Console.Clear();
+                Console.WriteLine("--- Main Menu ---");
+                Console.WriteLine("1. Initialize Price List");
+                Console.WriteLine("2. Manage Inventory");
+                Console.WriteLine("3. Exit");
+                Console.Write("Please select an option: ");
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        PriceListManager.InitializePricelist(args);
+                        break;
+                    case "2":             
+                        InventoryManager.ManageInventory(args);
+                        break;
+                    case "3":
+                        Console.WriteLine("Exiting the application...");
+                        Thread.Sleep(500);
+                        return;
+                    default:
+                        Console.WriteLine("Invalid option, please try again.");
+                        break;
+                }
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             }
-            Console.WriteLine("Price List Initialized successfully!");
-            Thread.Sleep(3000);
+        
         }
     }
 }

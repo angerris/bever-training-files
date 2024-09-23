@@ -7,7 +7,6 @@ namespace Test_Connector.Model
         public Guid priceListId { get; set; }
         public string priceListName { get; set; }
         public Guid currencyId { get; set; }
-
  
     }
 }
