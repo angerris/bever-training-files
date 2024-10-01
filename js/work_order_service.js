@@ -71,3 +71,70 @@ function applyEmptyServiceFilter(formContext) {
     .getControl("cr8c9_fk_service")
     .addCustomFilter(emptyFilterXml, "cr8c9_product");
 }
+
+async function autofillPricePerUnitInWorkOrderService(executionContext) {
+  const formContext = executionContext.getFormContext();
+  const workOrderField = formContext
+    .getAttribute("cr8c9_fk_work_order")
+    .getValue();
+  const productField = formContext.getAttribute("cr8c9_fk_service").getValue();
+
+  if (!workOrderField || !productField) {
+    return;
+  }
+
+  const workOrderId = workOrderField[0].id.replace(/[{}]/g, "");
+  const productId = productField[0].id.replace(/[{}]/g, "");
+
+  const fetchXMLWorkOrder = `
+      <fetch top="1">
+          <entity name="cr8c9_work_order">
+              <attribute name="cr8c9_fk_price_list" />
+              <filter>
+                  <condition attribute="cr8c9_work_orderid" operator="eq" value="${workOrderId}" />
+              </filter>
+          </entity>
+      </fetch>
+  `;
+
+  const workOrderResult = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_work_order",
+    `?fetchXml=${encodeURIComponent(fetchXMLWorkOrder)}`
+  );
+
+  const priceListId =
+    workOrderResult.entities[0]._cr8c9_fk_price_list_value.replace(/[{}]/g, "");
+
+  const fetchXMLPriceListItem = `
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+          <entity name="cr8c9_price_list_item">
+              <attribute name="cr8c9_mon_price" />
+              <filter type="and">
+                  <condition attribute="cr8c9_fk_price_list" operator="eq" value="${priceListId}" />
+                  <condition attribute="cr8c9_fk_product" operator="eq" value="${productId}" />
+              </filter>
+          </entity>
+      </fetch>
+  `;
+
+  const priceListResult = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_price_list_item",
+    `?fetchXml=${encodeURIComponent(fetchXMLPriceListItem)}`
+  );
+
+  let valueToSet;
+
+  if (priceListResult.entities && priceListResult.entities.length > 0) {
+    valueToSet = priceListResult.entities[0]["cr8c9_mon_price"];
+  } else {
+    const productRecord = await Xrm.WebApi.retrieveRecord(
+      "cr8c9_product",
+      productId,
+      "?$select=cr8c9_mon_cost"
+    );
+
+    valueToSet = productRecord.cr8c9_mon_cost || 0;
+  }
+
+  formContext.getAttribute("cr8c9_mon_price_per_unit").setValue(valueToSet);
+}

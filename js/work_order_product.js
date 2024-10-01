@@ -6,7 +6,7 @@ async function filterProducts(executionContext) {
     .getAttribute("cr8c9_fk_inventory")
     .getValue();
 
-  if (inventoryLookup && inventoryLookup.length > 0) {
+  if (inventoryLookup) {
     const inventoryId = inventoryLookup[0].id.replace(/[{}]/g, "");
     const fetchXml = `
       <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
@@ -40,7 +40,7 @@ async function filterProducts(executionContext) {
         .removePreSearch(productPointer);
     }
 
-    if (result.entities.length > 0) {
+    if (result.entities) {
       const productIds = result.entities.map(
         (inventoryProduct) => inventoryProduct["an.cr8c9_productid"]
       );
@@ -97,7 +97,7 @@ async function updateInventory(executionContext) {
   const formContext = executionContext.getFormContext();
   const product = formContext.getAttribute("cr8c9_fk_product").getValue();
 
-  if (!product || product.length === 0) {
+  if (!product) {
     return [];
   }
 
@@ -118,7 +118,7 @@ async function updateInventory(executionContext) {
     `?fetchXml=${encodeURIComponent(fetchXmlMaxQuantity)}`
   );
 
-  if (maxQuantityResult.entities.length === 0) {
+  if (!maxQuantityResult.entities) {
     return [];
   }
 
@@ -145,7 +145,7 @@ async function updateInventory(executionContext) {
     `?fetchXml=${encodeURIComponent(fetchXmlInventory)}`
   );
 
-  if (inventoryResult.entities.length === 0) {
+  if (!inventoryResult.entities) {
     return [];
   }
 
@@ -160,6 +160,75 @@ async function updateInventory(executionContext) {
       name: inventoryName
     }
   ]);
-
+  formContext.getAttribute("cr8c9_fk_inventory").fireOnChange();
   return inventoryResult.entities;
+}
+
+async function autofillPricePerUnitInWorkOrderProduct(executionContext) {
+  const formContext = executionContext.getFormContext();
+  const inventoryField = formContext
+    .getAttribute("cr8c9_fk_inventory")
+    .getValue();
+  const productField = formContext.getAttribute("cr8c9_fk_product").getValue();
+
+  if (!inventoryField || !productField) {
+    return;
+  }
+  const inventoryId = inventoryField[0].id.replace(/[{}]/g, "");
+  const productId = productField[0].id.replace(/[{}]/g, "");
+
+  const fetchXML = `
+  <fetch
+    version="1.0"
+    output-format="xml-platform"
+    mapping="logical"
+    distinct="true"
+  >
+    <entity name="cr8c9_inventory">
+      <attribute name="cr8c9_inventoryid" />
+      <attribute name="cr8c9_fk_price_list" />
+      <filter type="and">
+        <condition
+          attribute="cr8c9_inventoryid"
+          operator="eq"
+          value="${inventoryId}"
+        />
+      </filter>
+      <link-entity
+        name="cr8c9_price_list_item"
+        from="cr8c9_fk_price_list"
+        to="cr8c9_fk_price_list"
+        link-type="inner"
+        alias="pli"
+      >
+        <attribute name="cr8c9_mon_price" />
+        <filter type="and">
+          <condition
+            attribute="cr8c9_fk_product"
+            operator="eq"
+            value="${productId}"
+          />
+        </filter>
+      </link-entity>
+    </entity>
+  </fetch>
+`;
+
+  const result = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_inventory",
+    `?fetchXml=${encodeURIComponent(fetchXML)}`
+  );
+
+  let pricePerUnit;
+  if (result.entities) {
+    pricePerUnit = result.entities[0]["pli.cr8c9_mon_price"];
+  } else {
+    const productRecord = await Xrm.WebApi.retrieveRecord(
+      "cr8c9_product",
+      productId,
+      "?$select=cr8c9_mon_price_per_unit"
+    );
+    pricePerUnit = productRecord.cr8c9_mon_price_per_unit || 0;
+  }
+  formContext.getAttribute("cr8c9_mon_price_per_unit").setValue(pricePerUnit);
 }
