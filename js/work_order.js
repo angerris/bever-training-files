@@ -140,7 +140,9 @@ function disableFieldsOnClosed(executionContext) {
   if (status === 976090001) {
     formContext.ui.controls.forEach(function (control) {
       if (control && control.getName()) {
-        control.setDisabled(true);
+        if (control.getName() !== "cr8c9_os_status") {
+          control.setDisabled(true);
+      }
       }
     });
   }
