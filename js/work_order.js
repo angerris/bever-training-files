@@ -133,3 +133,15 @@ async function getSumOfField(
     response.entities.length > 0 ? response.entities[0]["totalSum"] : 0;
   return totalSum;
 }
+
+function disableFieldsOnClosed(executionContext) {
+  const formContext = executionContext.getFormContext();
+  const status = formContext.getAttribute("cr8c9_os_status").getValue();
+  if (status === 976090001) {
+    formContext.ui.controls.forEach(function (control) {
+      if (control && control.getName()) {
+        control.setDisabled(true);
+      }
+    });
+  }
+}
