@@ -142,7 +142,7 @@ function disableFieldsOnClosed(executionContext) {
       if (control && control.getName()) {
         if (control.getName() !== "cr8c9_os_status") {
           control.setDisabled(true);
-      }
+        }
       }
     });
   }

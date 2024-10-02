@@ -258,3 +258,52 @@ async function getWorkOrderStatus(workOrderId) {
   );
   return result.cr8c9_os_status;
 }
+
+async function validateWorkOrderProductQuantity(executionContext) {
+  const formContext = executionContext.getFormContext();
+
+  const inventoryField = formContext.getAttribute("cr8c9_fk_inventory");
+  const productField = formContext.getAttribute("cr8c9_fk_product");
+  const quantityField = formContext.getAttribute("cr8c9_int_quantity");
+
+  if (!productField || !quantityField || !inventoryField) return;
+
+  const productId = productField.getValue();
+  const inventoryId = inventoryField.getValue();
+  const quantityToAdd = quantityField.getValue();
+
+  if (!productId || !inventoryId || quantityToAdd === null) return;
+
+  const availableQuantity = await getAvailableQuantityForProduct(
+    productId[0].id.replace(/[{}]/g, ""),
+    inventoryId[0].id.replace(/[{}]/g, "")
+  );
+
+  if (quantityToAdd > availableQuantity) {
+    const errorMessage = `The maximum quantity you can add is ${availableQuantity}.`;
+    quantityField.setIsValid(false);
+    formContext.getControl("cr8c9_int_quantity").setNotification(errorMessage);
+  } else {
+    quantityField.setIsValid(true);
+    formContext.getControl("cr8c9_int_quantity").clearNotification();
+  }
+}
+
+async function getAvailableQuantityForProduct(productId, inventoryId) {
+  const fetchXml = `
+      <fetch top="1">
+          <entity name="cr8c9_inventory_product">
+              <attribute name="cr8c9_int_quantity" />
+              <filter>
+                  <condition attribute="cr8c9_fk_product_" operator="eq" value="${productId}" />
+                  <condition attribute="cr8c9_fk_inventory" operator="eq" value="${inventoryId}" />
+              </filter>
+          </entity>
+      </fetch>`;
+
+  const results = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_inventory_product",
+    `?fetchXml=${encodeURIComponent(fetchXml)}`
+  );
+  return results.entities ? results.entities[0].cr8c9_int_quantity : 0;
+}
