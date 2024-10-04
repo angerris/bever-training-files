@@ -1,6 +1,6 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using System;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
-using System;
 
 namespace Inventory_Management
 {
@@ -12,43 +12,55 @@ namespace Inventory_Management
             IOrganizationServiceFactory serviceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
             IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
 
-            if (context.Depth > 1) return;
+            if (context.Depth > 1)
+            {
+                return;
+            }
+
             if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is EntityReference inventoryProductRef)
             {
-                if (inventoryProductRef.LogicalName != "cr8c9_inventory_product") return;
-                if (context.Stage != 40) return;
-                if (context.PreEntityImages.Contains("PreImage"))
+                if (inventoryProductRef.LogicalName != "cr8c9_inventory_product")
                 {
-                    Entity preImage = (Entity)context.PreEntityImages["PreImage"];
-                    EntityReference inventoryRef = preImage.GetAttributeValue<EntityReference>("cr8c9_fk_inventory");
-                    if (inventoryRef == null) return;
-                    decimal totalAmountSum = 0;
-                    QueryExpression query = new QueryExpression("cr8c9_inventory_product")
-                    {
-                        ColumnSet = new ColumnSet("cr8c9_mon_total_amount"),
-                        Criteria = new FilterExpression
-                        {
-                            Conditions =
-                            {
-                                new ConditionExpression("cr8c9_fk_inventory", ConditionOperator.Equal, inventoryRef.Id)
-                            }
-                        }
-                    };
-                    EntityCollection inventoryProducts = service.RetrieveMultiple(query);
-                    foreach (var product in inventoryProducts.Entities)
-                    {
-                        Money productTotalMoney = product.GetAttributeValue<Money>("cr8c9_mon_total_amount");
-                        totalAmountSum += productTotalMoney?.Value ?? 0;
-                    }
+                    return;
+                }
 
-                    Entity inventory = new Entity(inventoryRef.LogicalName, inventoryRef.Id)
-                    {
-                        ["cr8c9_mon_total_amount"] = new Money(totalAmountSum)
-                    };
+                EntityReference inventoryRef = inventoryProductRef;
 
-                    service.Update(inventory);
+                decimal totalAmountSum = GetTotalAmountSum(service, inventoryRef.Id);
+
+                Entity inventory = new Entity(inventoryRef.LogicalName, inventoryRef.Id)
+                {
+                    ["cr8c9_mon_total_amount"] = new Money(totalAmountSum)
+                };
+
+                service.Update(inventory);
+            }
+        }
+
+        private decimal GetTotalAmountSum(IOrganizationService service, Guid inventoryId)
+        {
+            string fetchXml = $@"
+                <fetch aggregate='true'>
+                    <entity name='cr8c9_inventory_product'>
+                        <attribute name='cr8c9_mon_total_amount' alias='TotalAmountSum' aggregate='sum'/>
+                        <filter>
+                            <condition attribute='cr8c9_fk_inventory' operator='eq' value='{inventoryId}' />
+                        </filter>
+                    </entity>
+                </fetch>";
+
+            EntityCollection result = service.RetrieveMultiple(new FetchExpression(fetchXml));
+
+            if (result.Entities.Count > 0)
+            {
+                var aliasedValue = result.Entities[0].GetAttributeValue<AliasedValue>("TotalAmountSum");
+                if (aliasedValue != null && aliasedValue.Value is decimal sumValue)
+                {
+                    return sumValue;
                 }
             }
+
+            return 0;
         }
     }
 }
