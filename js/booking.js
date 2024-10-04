@@ -1,17 +1,12 @@
 async function disableBookingIfWorkOrderClosed(executionContext) {
   const formContext = executionContext.getFormContext();
-  const workOrderLookup = formContext
+  const workOrderId = formContext
     .getAttribute("cr8c9_fk_work_order")
-    .getValue();
+    .getValue()?.[0]?.id;
 
-  if (workOrderLookup) {
-    const workOrderId = workOrderLookup[0].id;
-    const status = await getWorkOrderStatus(workOrderId);
-    if (status === 976090001) {
-      formContext.ui.controls.forEach(function (control) {
-        control.setDisabled(true);
-      });
-    }
+  const closedStatus = 976090001;
+  if (workOrderId && (await getWorkOrderStatus(workOrderId)) === closedStatus) {
+    formContext.ui.controls.forEach((control) => control.setDisabled(true));
   }
 }
 

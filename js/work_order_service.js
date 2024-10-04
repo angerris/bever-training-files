@@ -1,77 +1,4 @@
-let servicePointer = null;
-
-async function filterServices(executionContext) {
-  const formContext = executionContext.getFormContext();
-
-  const fetchXml = `
-    <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
-      <entity name="cr8c9_product">
-        <attribute name="cr8c9_productid" />
-        <attribute name="cr8c9_name" />
-        <order attribute="cr8c9_name" descending="false" />
-        <filter type="and">
-          <condition attribute="cr8c9_os_type" operator="eq" value="976090001" />
-        </filter>
-      </entity>
-    </fetch>
-  `;
-
-  const encodedFetchXml = encodeURIComponent(fetchXml);
-
-  const result = await Xrm.WebApi.retrieveMultipleRecords(
-    "cr8c9_product",
-    `?fetchXml=${encodedFetchXml}`
-  );
-
-  if (servicePointer !== null) {
-    formContext.getControl("cr8c9_fk_service").removePreSearch(servicePointer);
-  }
-
-  if (result.entities.length > 0) {
-    const serviceIds = result.entities.map(
-      (service) => service["cr8c9_productid"]
-    );
-
-    servicePointer = function () {
-      addServiceFilter(formContext, serviceIds);
-    };
-
-    formContext.getControl("cr8c9_fk_service").addPreSearch(servicePointer);
-  } else {
-    servicePointer = function () {
-      applyEmptyServiceFilter(formContext);
-    };
-
-    formContext.getControl("cr8c9_fk_service").addPreSearch(servicePointer);
-  }
-}
-
-function addServiceFilter(formContext, serviceIds) {
-  const filterXml = `
-    <filter type="and">
-      <condition attribute="cr8c9_productid" operator="in">
-        ${serviceIds.map((id) => `<value>${id}</value>`).join("")}
-      </condition>
-    </filter>
-  `;
-
-  formContext
-    .getControl("cr8c9_fk_service")
-    .addCustomFilter(filterXml, "cr8c9_product");
-}
-
-function applyEmptyServiceFilter(formContext) {
-  const emptyFilterXml = `
-    <filter type="and">
-      <condition attribute="cr8c9_productid" operator="null" />
-    </filter>
-  `;
-
-  formContext
-    .getControl("cr8c9_fk_service")
-    .addCustomFilter(emptyFilterXml, "cr8c9_product");
-}
-
+//------------autofill price per unit start------------
 async function autofillPricePerUnitInWorkOrderService(executionContext) {
   const formContext = executionContext.getFormContext();
   const workOrderField = formContext
@@ -86,75 +13,78 @@ async function autofillPricePerUnitInWorkOrderService(executionContext) {
   const workOrderId = workOrderField[0].id.replace(/[{}]/g, "");
   const productId = productField[0].id.replace(/[{}]/g, "");
 
-  const fetchXMLWorkOrder = `
-      <fetch top="1">
-          <entity name="cr8c9_work_order">
-              <attribute name="cr8c9_fk_price_list" />
-              <filter>
-                  <condition attribute="cr8c9_work_orderid" operator="eq" value="${workOrderId}" />
-              </filter>
-          </entity>
-      </fetch>
-  `;
-
-  const workOrderResult = await Xrm.WebApi.retrieveMultipleRecords(
-    "cr8c9_work_order",
-    `?fetchXml=${encodeURIComponent(fetchXMLWorkOrder)}`
-  );
-
-  const priceListId =
-    workOrderResult.entities[0]._cr8c9_fk_price_list_value.replace(/[{}]/g, "");
-
-  const fetchXMLPriceListItem = `
-      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
-          <entity name="cr8c9_price_list_item">
-              <attribute name="cr8c9_mon_price" />
-              <filter type="and">
-                  <condition attribute="cr8c9_fk_price_list" operator="eq" value="${priceListId}" />
-                  <condition attribute="cr8c9_fk_product" operator="eq" value="${productId}" />
-              </filter>
-          </entity>
-      </fetch>
-  `;
-
-  const priceListResult = await Xrm.WebApi.retrieveMultipleRecords(
-    "cr8c9_price_list_item",
-    `?fetchXml=${encodeURIComponent(fetchXMLPriceListItem)}`
-  );
-
-  let valueToSet;
-
-  if (priceListResult.entities && priceListResult.entities.length > 0) {
-    valueToSet = priceListResult.entities[0]["cr8c9_mon_price"];
-  } else {
-    const productRecord = await Xrm.WebApi.retrieveRecord(
-      "cr8c9_product",
-      productId,
-      "?$select=cr8c9_mon_cost"
-    );
-
-    valueToSet = productRecord.cr8c9_mon_cost || 0;
-  }
+  const priceListId = await getPriceListId(workOrderId);
+  const valueToSet =
+    (await getPricePerUnit(priceListId, productId)) ||
+    (await getProductCost(productId));
 
   formContext.getAttribute("cr8c9_mon_price_per_unit").setValue(valueToSet);
 }
 
-async function disableWOServiceIfWorkOrderClosed(executionContext) {
-  const formContext = executionContext.getFormContext();
-  const workOrderLookup = formContext
-    .getAttribute("cr8c9_fk_work_order")
-    .getValue();
-  if (workOrderLookup) {
-    const workOrderId = workOrderLookup[0].id;
-    const status = await getWorkOrderStatus(workOrderId);
-    if (status === 976090001) {
-      formContext.ui.controls.forEach(function (control) {
-        control.setDisabled(true);
-      });
-    }
-  }
+async function getPriceListId(workOrderId) {
+  const fetchXML = `
+    <fetch top="1">
+      <entity name="cr8c9_work_order">
+        <attribute name="cr8c9_fk_price_list" />
+        <filter>
+          <condition attribute="cr8c9_work_orderid" operator="eq" value="${workOrderId}" />
+        </filter>
+      </entity>
+    </fetch>
+  `;
+
+  const result = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_work_order",
+    `?fetchXml=${encodeURIComponent(fetchXML)}`
+  );
+
+  return result.entities[0]?._cr8c9_fk_price_list_value.replace(/[{}]/g, "");
 }
 
+async function getPricePerUnit(priceListId, productId) {
+  const fetchXML = `
+    <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+      <entity name="cr8c9_price_list_item">
+        <attribute name="cr8c9_mon_price" />
+        <filter type="and">
+          <condition attribute="cr8c9_fk_price_list" operator="eq" value="${priceListId}" />
+          <condition attribute="cr8c9_fk_product" operator="eq" value="${productId}" />
+        </filter>
+      </entity>
+    </fetch>
+  `;
+
+  const result = await Xrm.WebApi.retrieveMultipleRecords(
+    "cr8c9_price_list_item",
+    `?fetchXml=${encodeURIComponent(fetchXML)}`
+  );
+
+  return result.entities.length ? result.entities[0]["cr8c9_mon_price"] : null;
+}
+
+async function getProductCost(productId) {
+  const productRecord = await Xrm.WebApi.retrieveRecord(
+    "cr8c9_product",
+    productId,
+    "?$select=cr8c9_mon_cost"
+  );
+
+  return productRecord.cr8c9_mon_cost || 0;
+}
+//------------autofill price per unit end------------
+
+//------------disable WO service field start------------
+async function disableWOServiceIfWorkOrderClosed(executionContext) {
+  const formContext = executionContext.getFormContext();
+  const workOrderId = formContext
+    .getAttribute("cr8c9_fk_work_order")
+    .getValue()?.[0]?.id;
+
+  const closedStatus = 976090001;
+  if (workOrderId && (await getWorkOrderStatus(workOrderId)) === closedStatus) {
+    formContext.ui.controls.forEach((control) => control.setDisabled(true));
+  }
+}
 async function getWorkOrderStatus(workOrderId) {
   const result = await Xrm.WebApi.retrieveRecord(
     "cr8c9_work_order",
@@ -162,4 +92,16 @@ async function getWorkOrderStatus(workOrderId) {
     "?$select=cr8c9_os_status"
   );
   return result.cr8c9_os_status;
+}
+//------------disable WO service field end------------
+
+function calculateTotalAmount(executionContext) {
+  const formContext = executionContext.getFormContext();
+  const pricePerHour =
+    formContext.getAttribute("cr8c9_mon_price_per_unit").getValue() || 0;
+  const durationInMinutes =
+    formContext.getAttribute("cr8c9_int_duration").getValue() || 0;
+  const durationInHours = durationInMinutes / 60;
+  const totalAmount = pricePerHour * durationInHours;
+  formContext.getAttribute("cr8c9_mon_total_amount").setValue(totalAmount);
 }

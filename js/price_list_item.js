@@ -3,8 +3,8 @@ async function autofillCurrency(executionContext) {
   const priceListLookup = formContext
     .getAttribute("cr8c9_fk_price_list")
     .getValue();
-  if (priceListLookup && priceListLookup.length) {
-    const priceListId = priceListLookup[0].id.replace("{", "").replace("}", "");
+  if (priceListLookup) {
+    const priceListId = priceListLookup[0].id.replace(/[{}]/g, "");
     const result = await Xrm.WebApi.retrieveRecord(
       "cr8c9_price_list",
       priceListId,
@@ -28,7 +28,7 @@ async function autofillCurrency(executionContext) {
 function setItemName(executionContext) {
   const formContext = executionContext.getFormContext();
   const product = formContext.getAttribute("cr8c9_fk_product").getValue();
-  if (product !== null && product.length > 0) {
+  if (product) {
     const productName = product[0].name;
     formContext.getAttribute("cr8c9_name").setValue(productName);
   } else {
