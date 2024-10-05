@@ -12,11 +12,6 @@ namespace Inventory_Management
             IOrganizationServiceFactory serviceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
             IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
 
-            if (context.Depth > 1)
-            {
-                return;
-            }
-
             if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is EntityReference inventoryProductRef)
             {
                 if (inventoryProductRef.LogicalName != "cr8c9_inventory_product")
