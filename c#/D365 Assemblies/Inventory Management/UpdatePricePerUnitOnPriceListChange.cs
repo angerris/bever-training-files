@@ -23,41 +23,14 @@ namespace Inventory_Management
                     IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
 
                     Guid inventoryId = inventory.Id;
-
-                    QueryExpression inventoryProductQuery = new QueryExpression("cr8c9_inventory_product")
-                    {
-                        ColumnSet = new ColumnSet("cr8c9_fk_product_", "cr8c9_mon_price_per_unit"),
-                        Criteria = new FilterExpression
-                        {
-                            Conditions =
-                            {
-                                new ConditionExpression("cr8c9_fk_inventory", ConditionOperator.Equal, inventoryId)
-                            }
-                        }
-                    };
-
-                    EntityCollection inventoryProducts = service.RetrieveMultiple(inventoryProductQuery);
+                    EntityCollection inventoryProducts = RetrieveInventoryProducts(service, inventoryId);
 
                     foreach (Entity inventoryProduct in inventoryProducts.Entities)
                     {
                         if (inventoryProduct.Contains("cr8c9_fk_product_") && inventoryProduct["cr8c9_fk_product_"] is EntityReference)
                         {
                             EntityReference productRef = (EntityReference)inventoryProduct["cr8c9_fk_product_"];
-
-                            QueryExpression priceListItemQuery = new QueryExpression("cr8c9_price_list_item")
-                            {
-                                ColumnSet = new ColumnSet("cr8c9_mon_price"),
-                                Criteria = new FilterExpression
-                                {
-                                    Conditions =
-                                    {
-                                        new ConditionExpression("cr8c9_fk_price_list", ConditionOperator.Equal, newPriceListRef.Id),
-                                        new ConditionExpression("cr8c9_fk_product", ConditionOperator.Equal, productRef.Id)
-                                    }
-                                }
-                            };
-
-                            EntityCollection priceListItems = service.RetrieveMultiple(priceListItemQuery);
+                            EntityCollection priceListItems = RetrievePriceListItems(service, newPriceListRef.Id, productRef.Id);
 
                             if (priceListItems.Entities.Any())
                             {
@@ -71,6 +44,41 @@ namespace Inventory_Management
                     }
                 }
             }
+        }
+
+        private EntityCollection RetrieveInventoryProducts(IOrganizationService service, Guid inventoryId)
+        {
+            QueryExpression inventoryProductQuery = new QueryExpression("cr8c9_inventory_product")
+            {
+                ColumnSet = new ColumnSet("cr8c9_fk_product_", "cr8c9_mon_price_per_unit"),
+                Criteria = new FilterExpression
+                {
+                    Conditions =
+                    {
+                        new ConditionExpression("cr8c9_fk_inventory", ConditionOperator.Equal, inventoryId)
+                    }
+                }
+            };
+
+            return service.RetrieveMultiple(inventoryProductQuery);
+        }
+
+        private EntityCollection RetrievePriceListItems(IOrganizationService service, Guid priceListId, Guid productId)
+        {
+            QueryExpression priceListItemQuery = new QueryExpression("cr8c9_price_list_item")
+            {
+                ColumnSet = new ColumnSet("cr8c9_mon_price"),
+                Criteria = new FilterExpression
+                {
+                    Conditions =
+                    {
+                        new ConditionExpression("cr8c9_fk_price_list", ConditionOperator.Equal, priceListId),
+                        new ConditionExpression("cr8c9_fk_product", ConditionOperator.Equal, productId)
+                    }
+                }
+            };
+
+            return service.RetrieveMultiple(priceListItemQuery);
         }
     }
 }
