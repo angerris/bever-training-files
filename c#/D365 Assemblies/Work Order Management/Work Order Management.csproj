@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeleteRelatedInvoices.cs" />
+    <Compile Include="GenerateActuals.cs" />
     <Compile Include="GenerateInvoice.cs" />
     <Compile Include="WorkOrderAutoNumberPlugin.cs" />
     <Compile Include="WorkOrderClosePostedPlugin.cs" />

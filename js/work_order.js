@@ -140,3 +140,30 @@ function disableFieldsOnClosed(executionContext) {
     });
   }
 }
+
+//------------generate actuals start------------
+function callGenerateActuals(formContext) {
+  let workOrderId = formContext.data.entity.getId().replace(/[{}]/g, "");
+  const workOrderSchemaName = "cr8c9_work_order";
+  let request = {
+    entity: {
+      id: workOrderId,
+      entityType: workOrderSchemaName
+    },
+    getMetadata: function () {
+      return {
+        boundParameter: "entity",
+        parameterTypes: {
+          entity: {
+            typeName: "mscrm.cr8c9_work_order",
+            structuralProperty: 5
+          }
+        },
+        operationName: "new_GenerateActuals",
+        operationType: 0
+      };
+    }
+  };
+  Xrm.WebApi.online.execute(request);
+}
+//------------generate actuals end------------
