@@ -126,6 +126,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeleteRelatedInvoices.cs" />
+    <Compile Include="GenerateInvoice.cs" />
+    <Compile Include="WorkOrderAutoNumberPlugin.cs" />
     <Compile Include="WorkOrderClosePostedPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
