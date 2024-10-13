@@ -1,7 +1,0 @@
-# Visual Studio
-.vs/
-# Build directories
-bin/
-obj/
-# NuGet packages
-packages/

@@ -1,0 +1,231 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\services\\inventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\services\\inventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\consoleapps\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\consoleapps\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|c:\\users\\arian\\desktop\\bever_training\\c#\\d365 console apps\\test connector\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\bin\\debug\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\bin\\debug\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\utilities\\d365connector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\utilities\\d365connector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\services\\pricelistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\services\\pricelistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\consoleapps\\pricelistmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\consoleapps\\pricelistmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\model\\inventoryproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\model\\inventoryproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\model\\pricelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\D365 Connector.csproj|solutionrelative:test connector\\model\\pricelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\Test Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\Test Connector.csproj|solutionrelative:test connector\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\Test Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\utilities\\d365connector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\Test Connector.csproj|solutionrelative:test connector\\utilities\\d365connector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\Test Connector.csproj|C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\test connector\\model\\pricelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C5AF6E-7567-4E61-8778-1AE6202D8072}|Test Connector\\Test Connector.csproj|solutionrelative:test connector\\model\\pricelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InventoryService.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Services\\InventoryService.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Services\\InventoryService.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Services\\InventoryService.cs",
+              "RelativeToolTip": "Test Connector\\Services\\InventoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIcAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T22:46:14.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\Product.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Model\\Product.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\Product.cs",
+              "RelativeToolTip": "Test Connector\\Model\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T18:11:09.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InventoryProduct.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\InventoryProduct.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Model\\InventoryProduct.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\InventoryProduct.cs",
+              "RelativeToolTip": "Test Connector\\Model\\InventoryProduct.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T18:02:05.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PriceListManager.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\ConsoleApps\\PriceListManager.cs",
+              "RelativeDocumentMoniker": "Test Connector\\ConsoleApps\\PriceListManager.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\ConsoleApps\\PriceListManager.cs",
+              "RelativeToolTip": "Test Connector\\ConsoleApps\\PriceListManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T17:51:29.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Program.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Program.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Program.cs",
+              "RelativeToolTip": "Test Connector\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T09:20:52.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InventoryManager.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\ConsoleApps\\InventoryManager.cs",
+              "RelativeDocumentMoniker": "Test Connector\\ConsoleApps\\InventoryManager.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\ConsoleApps\\InventoryManager.cs",
+              "RelativeToolTip": "Test Connector\\ConsoleApps\\InventoryManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T17:51:15.905Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\bin\\Debug\\appsettings.json",
+              "RelativeDocumentMoniker": "Test Connector\\bin\\Debug\\appsettings.json",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\bin\\Debug\\appsettings.json",
+              "RelativeToolTip": "Test Connector\\bin\\Debug\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-24T00:28:21.33Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PriceListService.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Services\\PriceListService.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Services\\PriceListService.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Services\\PriceListService.cs",
+              "RelativeToolTip": "Test Connector\\Services\\PriceListService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T22:49:21.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PriceList.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\PriceList.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Model\\PriceList.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\PriceList.cs",
+              "RelativeToolTip": "Test Connector\\Model\\PriceList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T14:18:54.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "D365Connector.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Utilities\\D365Connector.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Utilities\\D365Connector.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Utilities\\D365Connector.cs",
+              "RelativeToolTip": "Test Connector\\Utilities\\D365Connector.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T14:15:57.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "D365Connector.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Utilities\\D365Connector.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Utilities\\D365Connector.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Utilities\\D365Connector.cs",
+              "RelativeToolTip": "Test Connector\\Utilities\\D365Connector.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowE8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T21:14:03.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\Product.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Model\\Product.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\Product.cs",
+              "RelativeToolTip": "Test Connector\\Model\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T21:09:57.287Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PriceList.cs",
+              "DocumentMoniker": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\PriceList.cs",
+              "RelativeDocumentMoniker": "Test Connector\\Model\\PriceList.cs",
+              "ToolTip": "C:\\Users\\arian\\Desktop\\bever_training\\c#\\D365 Console Apps\\Test Connector\\Model\\PriceList.cs",
+              "RelativeToolTip": "Test Connector\\Model\\PriceList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T21:04:03.863Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

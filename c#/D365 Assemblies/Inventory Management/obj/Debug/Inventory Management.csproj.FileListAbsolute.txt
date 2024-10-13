@@ -1,0 +1,39 @@
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Inventory Management.dll.config
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Inventory Management.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Inventory Management.pdb
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Rest.ClientRuntime.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Xrm.Sdk.Deployment.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Xrm.Sdk.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Xrm.Sdk.Workflow.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Xrm.Tooling.Connector.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Newtonsoft.Json.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Buffers.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Memory.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.ServiceModel.Http.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.ServiceModel.Primitives.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Text.Json.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.ValueTuple.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\Microsoft.Xrm.Sdk.Workflow.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Buffers.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Memory.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.ServiceModel.Http.pdb
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.ServiceModel.Primitives.pdb
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Text.Json.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\obj\Debug\Inventory Management.csproj.AssemblyReference.cache
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\obj\Debug\Inventory Management.csproj.CoreCompileInputs.cache
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\obj\Debug\Inventor.CCAFEA7E.Up2Date
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\obj\Debug\Inventory Management.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Inventory Management\obj\Debug\Inventory Management.pdb

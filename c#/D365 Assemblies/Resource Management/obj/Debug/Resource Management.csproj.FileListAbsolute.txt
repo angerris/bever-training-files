@@ -1,0 +1,36 @@
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Resource Management.dll.config
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Resource Management.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Resource Management.pdb
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Microsoft.Xrm.Sdk.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Microsoft.Xrm.Sdk.Workflow.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Buffers.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Memory.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.ServiceModel.Http.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.ServiceModel.Primitives.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Text.Json.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.ValueTuple.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Microsoft.Xrm.Sdk.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\Microsoft.Xrm.Sdk.Workflow.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Buffers.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Memory.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.ServiceModel.Http.pdb
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.ServiceModel.Primitives.pdb
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Text.Json.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\bin\Debug\System.ValueTuple.xml
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\obj\Debug\Resource Management.csproj.AssemblyReference.cache
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\obj\Debug\Resource Management.csproj.CoreCompileInputs.cache
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\obj\Debug\Resource.653C1866.Up2Date
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\obj\Debug\Resource Management.dll
+C:\Users\arian\Desktop\bever_training\c#\D365 Assemblies\Resource Management\obj\Debug\Resource Management.pdb
